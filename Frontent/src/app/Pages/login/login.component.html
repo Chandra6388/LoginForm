@@ -1,0 +1,19 @@
+<div class="main-container d-flex justify-content-center align-items-center">
+    <div class="login-container">
+        <div class="login-left">
+          <img src="/assets/img/img.jpg" alt="Login Image" />
+        </div>
+        <div class="login-right">
+          <h2>Welcome Back!</h2>
+          <div class="d-flex flex-column">
+            <label for="email">Enter Email ID</label>
+            <input type="email" id="email" placeholder="Enter Your Email ID" [(ngModel)]="loginObj.Email" name="email" required/>
+            <label for="password">Enter Password</label>
+            <input type="password" id="password" placeholder="Enter Your Password" [(ngModel)]="loginObj.Password" name="password" required/>
+            <button type="button" class="btn btn-primary rounded" (click)="OnLogin()">Next</button>
+            <p>Don't have account ? Signup</p>
+          </div>
+        </div>
+      </div>
+</div>
+  

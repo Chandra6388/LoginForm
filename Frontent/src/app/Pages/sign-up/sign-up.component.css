@@ -1,0 +1,78 @@
+Basic resets
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9f1ff;
+  }
+  
+  .login-container {
+    display: flex;
+    width: 800px;
+    height: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .login-left {
+    background-color: #dbe7f9;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-left img {
+    width: 80%;
+    height: auto;
+  }
+  
+  .login-right {
+    flex: 1.5;
+    padding: 40px;
+    background-color: white;
+  }
+  
+  .login-right h2 {
+    margin-bottom: 20px;
+    color: #1e3a8a;
+  }
+  
+  .login-right form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-right label {
+    margin-bottom: 5px;
+    color: #1e3a8a;
+    font-weight: bold;
+  }
+  
+  .login-right input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .login-right input:focus {
+    border-color: #1e3a8a;
+    outline: none;
+  }
+  
+ 
+  
+  .login-right button:hover {
+    background-color: #174d9d;
+  }
+  
