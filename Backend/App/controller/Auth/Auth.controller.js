@@ -5,12 +5,12 @@ const bcrypt = require('bcrypt')
 
 class AuthController {
     async Login(req, res) {
-        console.log(req.body)   
+        console.log(req.body)
         try {
             console.log(req.body)
             const { Email, Password } = req.body;
-            
-    
+
+
             const findData = await user_db.findOne({ Email: Email });
             if (!findData) {
                 return res.send({
@@ -19,7 +19,7 @@ class AuthController {
                     data: []
                 });
             }
-    
+
             const isMatch = await bcrypt.compare(Password, findData.Password);
             if (!isMatch) {
                 return res.send({
@@ -28,7 +28,7 @@ class AuthController {
                     data: []
                 });
             }
-    
+
             const token = jwt.sign(
                 {
                     Email: findData.Email,
@@ -37,14 +37,14 @@ class AuthController {
                 process.env.SECRET_KEY,
                 { expiresIn: '1h' }
             );
-    
+
             return res.send({
                 status: true,
                 message: "Login Success",
                 data: findData,
                 token: token
             });
-    
+
         } catch (error) {
             console.error("Error in login:", error);
             return res.send({
@@ -55,34 +55,18 @@ class AuthController {
         }
     }
     async SignUp(req, res) {
-        console.log(req.body)
         try {
-            
-            const { Phone, Password, FullName, Email , Role , userName } = req.body;
-         
- 
-            const searchQuery = {
-                $or: [
-                    { Phone: Phone },
-                    { Email: Email }
-                ]
-            }
-            const findData = await user_db.findOne(searchQuery)
+            const { Phone, Password, FullName, Email, city, pincode, OrganisationName, OrganisationId, Designation, DOB } = req.body;
 
+            const findData = await user_db.findOne({ Email: Email });
             if (findData) {
-                let error = []
-                if (findData.Phone == Phone) {
-                    error.push("Phone Number Already Exist")
-                }
-                if (findData.Email == Email) {
-                    error.push("Email Already Exist")
-                }
                 return res.send({
                     status: false,
-                    message: error,
+                    message: "User Already Exist",
                     data: []
-                })
+                });
             }
+
             bcrypt.hash(Password, 10, async (err, hash) => {
 
                 if (err) {
@@ -95,21 +79,23 @@ class AuthController {
                 // Store hash in your password DB.
                 const newUser = new user_db({
                     Phone: Phone,
-                    Password: hash,
+                    Password: Password,
                     FullName: FullName,
                     Email: Email,
-                    Role :Role
+                    city: city,
+                    pincode: pincode,
+                    OrganisationName: OrganisationName,
+                    OrganisationId: OrganisationId,
+                    Designation: Designation,
+                    DOB: DOB
                 })
                 await newUser.save()
-
                 return res.send({
                     status: true,
                     message: "User Created Successfully",
                     data: []
                 })
-
             })
-
         }
         catch {
             console.log("Error in SignIn")

@@ -4,14 +4,21 @@
             <img src="/assets/img/img.jpg" alt="Login Image" />
         </div>
         <div class="login-right">
-            <h2>Welcome</h2>
+            <h4>Create Account</h4>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+              </div>
+            
             <div class="d-flex flex-column">
-                <label for="email">Enter Email ID</label>
-                <input type="email" id="email" placeholder="Enter Your Email ID" />
-                <span class="mb-3">(OR)</span>
-                <label for="number">Phone Number</label>
-                <input type="number" id="number" placeholder="Enter Your Phone Number" />
-                <button type="submit" class="btn btn-primary rounded">Next</button>
+                <label for="email" class="mt-4">Email ID</label>
+                <input type="email" id="email" placeholder="Enter Your Email ID" [(ngModel)]="signupObj.Email" name="Email" required />
+                
+                <label for="fullname" class="mt-2">FullName</label>
+                <input type="text" id="fullname" placeholder="Enter Your Full Name" [(ngModel)]="signupObj.FullName" name="FullName" required />
+                <label for="password" class="mt-2" >Password</label>
+                <input type="password" id="password" placeholder="Enter Your Password"  class="mb-3" [(ngModel)]="signupObj.Password" name="Password" required/>
+                 
+                <button type="button" class="btn btn-primary rounded" (click)="OnSignUp()">Next</button>
                 <p>Aready have account? Login</p>
             </div>
         </div>
